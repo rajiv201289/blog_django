@@ -1,0 +1,22 @@
+{% extends 'blogs/base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+<div class="container-fluid mt-4">
+    <a class=" link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-capitalize" href="{% url 'blogs:blog_posts' blog.id %}">
+        {{ blog }}
+      </a>
+</div>
+<p>
+    <a href=""></a>
+</p>
+<div class="container">
+    <p class="fs-4">Edit post</p>
+<form action="{% url 'blogs:edit_post' post.id %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form%}
+    {% bootstrap_button button_type="submit" content="Save" %}
+</form>
+
+</div>
+
+{% endblock content %}

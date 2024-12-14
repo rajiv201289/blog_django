@@ -1,0 +1,31 @@
+{% extends 'blogs/base.html' %}
+{% block content %}
+<div class="container-fluid p-5">
+    <p class="display-5 text-capitalize">
+        {{ blog.text }}
+    </p>
+        <a class=" link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover text-capitalize" href="{% url 'blogs:new_post' blog.id %}">
+            add new post
+          </a>
+    <div class="container mt-3">
+        <ul>
+            {% for post in posts %}
+            <div class="container">
+                <li>
+    
+                    <div class="container pe-5">
+                        <p class="badge text-bg-primary text-wrap">{{ post.date_added|date:'M d - y , H:i' }}</p>
+                    <h5>{{ post.post|linebreaks }}</h5>
+                    </div>
+                </li>
+                <p>
+                    <a href="{% url 'blogs:edit_post' post.id  %}" class="btn btn-outline-primary" tabindex="-1" role="button" aria-disabled="true">Edit post</a>
+                    <a class="btn  btn-outline-danger text-capitalize"  href="{% url 'blogs:delete_post' post.id  %}"role="button" aria-disabled="true">delete post</a> 
+                   
+                </p>
+            </div>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock content %}  
